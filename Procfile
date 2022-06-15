@@ -1,1 +1,1 @@
-web: ./target/rust-sample
+web: ./bin/rust-sample

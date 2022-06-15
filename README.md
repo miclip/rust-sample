@@ -7,7 +7,9 @@ Basic Rust Web application using the Rocket framework for testing with pack/TBS.
 ```sh
 git clone git@github.com:miclip/rust-sample.git
 cd ./rust-sample
-pack build rust-sample --buildpack paketo-buildpacks/syft@1.11.3 --buildpack paketo-community/rustup  --buildpack paketo-community/cargo -B paketobuildpacks/builder:tiny  -v
+pack build rust-sample --buildpack paketo-buildpacks/syft@1.11.3 \
+  --buildpack paketo-community/rustup  --buildpack paketo-community/cargo \
+  -B paketobuildpacks/builder:tiny  -v
 docker run -p 8000:8000  rust-sample
 curl localhost:8000/hello/michael/19
 
@@ -29,7 +31,8 @@ TBS will move the images to the default store (container registry).
 Next create a `Builder` or `ClusterBuilder`:
 
 ```sh
-kp builder save rust-builder -o ./order.yaml -n builds -s tiny --store default --tag gcr.io/my-project/custom-builders/rust-builder
+kp builder save rust-builder -o ./order.yaml -n builds -s tiny \
+  --store default --tag gcr.io/my-project/custom-builders/rust-builder
 ```
 
 order.yml: 
@@ -46,7 +49,9 @@ order.yml:
 Finally, create an `Image` resource. 
 
 ```sh
- kp image save rust-sample -b rust-builder --git https://github.com/miclip/rust-sample --tag gcr.io/my-project/tbs-examples/rust-sample --namespace builds --git-revision master --env BP_CARGO_EXCLUDE_FOLDERS=Rocket.toml --wait
+ kp image save rust-sample -b rust-builder --git https://github.com/miclip/rust-sample \
+   --tag gcr.io/my-project/tbs-examples/rust-sample --namespace builds \
+   --git-revision master --env BP_CARGO_EXCLUDE_FOLDERS=Rocket.toml --wait
 ```
 
 The environment `BP_CARGO_EXCLUDE_FOLDERS=Rocket.toml` is required so `kpack` keeps the `Rocket.toml` configuration file in the container otherwise the Rocket framework won't bind to the correct IP/Port. 

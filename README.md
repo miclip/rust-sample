@@ -54,5 +54,11 @@ Finally, create an `Image` resource.
    --git-revision master --env BP_CARGO_EXCLUDE_FOLDERS=Rocket.toml --wait
 ```
 
-The environment `BP_CARGO_EXCLUDE_FOLDERS=Rocket.toml` is required so `kpack` keeps the `Rocket.toml` configuration file in the container otherwise the Rocket framework won't bind to the correct IP/Port. 
+The environment `BP_CARGO_EXCLUDE_FOLDERS=Rocket.toml` is required so `kpack` keeps the `Rocket.toml` configuration file in the container otherwise the Rocket framework won't bind to the correct IP/Port. This environment variable can be set on the `Image` resource or via the `project.toml` file. 
+
+```toml
+[[build.env]]
+name = "BP_CARGO_EXCLUDE_FOLDERS"
+value = "Rocket.toml"
+```
 

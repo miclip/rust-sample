@@ -8,7 +8,8 @@ Basic Rust Web application using the Rocket framework for testing with pack/TBS.
 git clone git@github.com:miclip/rust-sample.git
 cd ./rust-sample
 pack build rust-sample --buildpack paketo-buildpacks/syft@1.11.3 \
-  --buildpack paketo-community/rustup  --buildpack paketo-community/cargo -B paketobuildpacks/builder:tiny  -v
+  --buildpack paketo-community/rustup  --buildpack paketo-community/cargo \
+  -B paketobuildpacks/builder:tiny  -v
 docker run -p 8000:8000  rust-sample
 curl localhost:8000/hello/michael/19
 

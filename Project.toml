@@ -2,3 +2,7 @@
 exclude = [
     "/target"
 ]
+
+[[build.env]]
+name = "BP_CARGO_EXCLUDE_FOLDERS"
+value = "Rocket.toml"

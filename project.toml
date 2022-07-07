@@ -4,5 +4,5 @@ exclude = [
 ]
 
 [[build.env]]
-name = "BP_CARGO_EXCLUDE_FOLDERS"
+name = "BP_INCLUDE_FILES"
 value = "Rocket.toml"
